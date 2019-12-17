@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image and publish to GitHub Packages
+      run: |
+        VERSION=$(date +%s)
+        docker build . --file Dockerfile --tag docker.pkg.github.com/acm-uic/roll-call/app:${VERSION}
+    - name: Push Image
+      if: github.ref == 'refs/heads/master'
+      run: |
+        docker login docker.pkg.github.com --username acm-uic --password ${{ secrets.GITHUB_TOKEN }}
+        docker push docker.pkg.github.com/acm-uic/roll-call/app:${VERSION}
