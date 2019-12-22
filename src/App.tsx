@@ -1,85 +1,130 @@
-import React from 'react';
-import './App.css';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+//TODO: try w/o sign in then try w/ sign in
+//TODO: just use some template
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      textAlign: 'center',
-    },
-    paper: {
-      padding: theme.spacing(3,2),
-      textAlign: 'center',
-      color: theme.palette.text.primary,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },    
-  }),
-);
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+import Box from "@material-ui/core/Box";
+
+
+
+const useStyles = makeStyles(theme => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
+}));
+
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 
 
 const App: React.FC = () => {
-
   const classes = useStyles();
 
   return (
-
-    <div className={classes.root}>
-
-      <AppBar position="static">
+    <React.Fragment>
+      <CssBaseline />
+      <AppBar position="relative">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" color="inherit" noWrap>
             ACM Roll Call
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-            
-        </Grid>
-
-        <Grid item xs={12}>
-          {/* <Paper className={classes.paper}><h3>ACM Roll Call</h3></Paper> */}
-
-          <Paper className={classes.paper}>
-
-            <Typography variant='h5' component='h3'>
-              ACM Event Title
+      <main>
+        {/* Hero unit */}
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+              ACM Roll Call
             </Typography>
-            <Typography component='p'>
-              ACM event details: Paper can be used to build surface or other
-              elements for your application.
+            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            The Association for Computing Machinery Student Chapter at the University of Illinois at Chicago (ACM@UIC) is a community for all UIC students interested in computing, computing machinery and related technologies.
             </Typography>
 
-            <br />
-
-            <Button variant='contained' color='primary'>
-              Start Event
-            </Button>
-
-            <br />
-            <br />
-
-          </Paper>
-          
-
-        </Grid>
-      </Grid>
-    </div>
+          </Container>
+        </div>
+        <Container className={classes.cardGrid} maxWidth="md">
+          {/* End hero unit */}
+          <Grid container spacing={4}>
+            {cards.map(card => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card} raised>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://avatars3.githubusercontent.com/u/20177515?s=280&v=4"
+                    title="Image title"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Event Name
+                    </Typography>
+                    <Typography>
+                      This is a media card. You can use this section to describe the content.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      View
+                    </Button>
+                    <Button size="small" color="primary">
+                      Edit
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </main>
+      {/* Footer */}
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          ACM Roll Call
+        </Typography>
+        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+          Attendance tracking for events and meetings
+        </Typography>
+      </footer>
+      {/* End footer */}
+    </React.Fragment>
   );
+
 }
 
 export default App;
