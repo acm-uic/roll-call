@@ -1,128 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-//TODO: try w/o sign in then try w/ sign in
-//TODO: just use some template
-
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import Box from "@material-ui/core/Box";
+import Home from './pages/Home';
 
 
+  //TODO: CURRENT TASK
+  //1. set up api in local_storage --> coming form url?
+    // example:  http://localhost:3000/?googleapikey=value1&googlecalendarids=value2
+    // key1 is (apiKey) key2 is (calendarId)
+  //2. get events to print out w/o any front end --> doesn't work? --> ask bharat & slack channel
+  //3. connect printed event data to front end
+  //4. if tempus example doesn't work try this --> https://www.npmjs.com/package/react-google-calendar-api
 
-const useStyles = makeStyles(theme => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-
+  // Next I'll be working on connecting the events to the shiny new home page 
 
 const App: React.FC = () => {
-  const classes = useStyles();
+
+
+    if (window.location.search.length !== 0) {
+      const search = window.location.search.substring(1);
+      const params = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+      Object.keys(params).forEach(key => {
+        if (params[key].trim().length !== 0) {
+          localStorage.setItem(key, decodeURIComponent(params[key]));
+        }
+      });
+      window.location.href = '/';
+    }
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            ACM Roll Call
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              ACM Roll Call
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            The Association for Computing Machinery Student Chapter at the University of Illinois at Chicago (ACM@UIC) is a community for all UIC students interested in computing, computing machinery and related technologies.
-            </Typography>
-
-          </Container>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card} raised>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://avatars3.githubusercontent.com/u/20177515?s=280&v=4"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Event Name
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          ACM Roll Call
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Attendance tracking for events and meetings
-        </Typography>
-      </footer>
-      {/* End footer */}
-    </React.Fragment>
+          <Home />
   );
 
 }
