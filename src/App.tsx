@@ -12,9 +12,14 @@ import Home from './pages/Home';
   //4. if tempus example doesn't work try this --> https://www.npmjs.com/package/react-google-calendar-api
 
   // Next I'll be working on connecting the events to the shiny new home page 
+    //need to use react lifecycle hooks to render the data --> use a class & updated w/ async method
+    //render material design to what's already there --> 
+      //1) try rendering plain html w/ each event
+      //2) try rendering material cards 
+      //3) try rendering shiny new home page
+
 
 const App: React.FC = () => {
-
 
     if (window.location.search.length !== 0) {
       const search = window.location.search.substring(1);

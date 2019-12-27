@@ -33,10 +33,11 @@ class Events extends PureComponent<{}, EventsState> {
             });
     }
     render = () => {
+        //render outer page frame here
         return (<>
             {(this.state.events && this.state.events.items)
                 ? this.state.events.items.map((ev, key) =>
-                    (<Event key={key} ev={ev} />))
+                    (<Event key={key} ev={ev} />)) //render material card for each event
                 : (<></>)}
         </>);
     }
