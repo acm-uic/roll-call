@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const cards = [1];
 
 const Event: FC<EventProps> = (props: EventProps) => {
     const { summary, location, start, end } = props.ev;
@@ -73,7 +73,6 @@ const Event: FC<EventProps> = (props: EventProps) => {
               <Typography gutterBottom variant="h5" component="h2">
 
               {summary ? summary : 'Busy'}
-
 
               </Typography>
               <Typography>
