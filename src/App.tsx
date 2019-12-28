@@ -21,6 +21,8 @@ import Home from './pages/Home';
 
 const App: React.FC = () => {
 
+  // This is the original branch
+
     if (window.location.search.length !== 0) {
       const search = window.location.search.substring(1);
       const params = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
