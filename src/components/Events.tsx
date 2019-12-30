@@ -95,13 +95,16 @@ class Events extends PureComponent<{}, EventsState> {
         </Toolbar>
       </AppBar>
 
-    </React.Fragment>      
 
     {(this.state.events && this.state.events.items)
     ? this.state.events.items.map((ev, key) =>
         (<Event key={key} ev={ev} />)) //render material card for each event
     : (<></>)}
-          
+
+    </React.Fragment>      
+
+
+
         </>);
     }
 }

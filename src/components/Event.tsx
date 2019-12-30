@@ -56,8 +56,6 @@ const Event: FC<EventProps> = (props: EventProps) => {
 <React.Fragment>
 <CssBaseline />
 
-
-
   <Container className={classes.cardGrid} maxWidth="md">
     {/* End hero unit */}
     <Grid container spacing={4}>
@@ -101,9 +99,6 @@ const Event: FC<EventProps> = (props: EventProps) => {
 
 
 </React.Fragment>
-
-
-
     );
 }
 
