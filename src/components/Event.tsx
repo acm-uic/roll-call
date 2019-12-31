@@ -44,10 +44,12 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const cards = [1];
 
 const Event: FC<EventProps> = (props: EventProps) => {
     const { summary, location, start, end } = props.ev;
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     const classes = useStyles();
     return (
 
@@ -58,9 +60,9 @@ const Event: FC<EventProps> = (props: EventProps) => {
 
   <Container className={classes.cardGrid} maxWidth="md">
     {/* End hero unit */}
-    <Grid container spacing={4}>
+    <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
       {cards.map(card => (
-        <Grid item key={card} xs={12} sm={6} md={4}>
+        <Grid item xs sm md lg key={card}>
           <Card className={classes.card} raised>
             <CardMedia
               className={classes.cardMedia}
@@ -84,7 +86,6 @@ const Event: FC<EventProps> = (props: EventProps) => {
             <CardActions>
               <Button size="small" color="primary">
 
-                
                 View
               </Button>
               <Button size="small" color="primary">
