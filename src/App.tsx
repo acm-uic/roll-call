@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Home from './pages/Home';
+import Amplify, { API } from 'aws-amplify';
+import awsconfig from './aws-exports';
+import AmplifyCore from "@aws-amplify/core";
+import { DataStore, Predicates } from "@aws-amplify/datastore";
+import Person from './model';
+
+Amplify.configure(awsconfig);
 
 
 
@@ -22,20 +29,20 @@ import Home from './pages/Home';
 
 const App: React.FC = () => {
 
-    if (window.location.search.length !== 0) {
-      const search = window.location.search.substring(1);
-      const params = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
-      Object.keys(params).forEach(key => {
-        if (params[key].trim().length !== 0) {
-          localStorage.setItem(key, decodeURIComponent(params[key]));
-        }
-      });
-      window.location.href = '/';
-    }
+  if (window.location.search.length !== 0) {
+    const search = window.location.search.substring(1);
+    const params = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+    Object.keys(params).forEach(key => {
+      if (params[key].trim().length !== 0) {
+        localStorage.setItem(key, decodeURIComponent(params[key]));
+      }
+    });
+    window.location.href = '/';
+  }
 
-  return (
-          <Home />
-  );
+return (
+        <Home />
+);
 
 }
 
