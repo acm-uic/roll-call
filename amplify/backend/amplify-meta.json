@@ -1,0 +1,63 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-roll-call-acm-163335-authRole",
+			"UnauthRoleArn": "arn:aws:iam::796567501476:role/amplify-roll-call-acm-163335-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::796567501476:role/amplify-roll-call-acm-163335-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-roll-call-acm-163335-deployment",
+			"UnauthRoleName": "amplify-roll-call-acm-163335-unauthRole",
+			"StackName": "amplify-roll-call-acm-163335",
+			"StackId": "arn:aws:cloudformation:us-east-1:796567501476:stack/amplify-roll-call-acm-163335/976edbc0-2c1d-11ea-a07b-0a029b5a039d",
+			"AmplifyAppId": "dvnnautfb8m15"
+		}
+	},
+	"function": {
+		"rollcall8d33d1a4": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2020-01-01T17:51:53.933Z",
+			"lastPackageTimeStamp": "2020-01-01T21:31:45.411Z",
+			"distZipFilename": "rollcall8d33d1a4-4e796743593654534e52-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-roll-call-acm-163335-deployment/amplify-cfn-templates/function/rollcall8d33d1a4-cloudformation-template.json",
+				"logicalId": "functionrollcall8d33d1a4"
+			},
+			"lastPushTimeStamp": "2020-01-01T21:32:52.529Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:796567501476:function:rollCallLamdaFunction-acm",
+				"Name": "rollCallLamdaFunction-acm",
+				"LambdaExecutionRole": "rollcallLambdaRole684269aa-acm"
+			},
+			"lastPushDirHash": "UCwRFoXHhAFP0BBp31rQpaWbQWk="
+		}
+	},
+	"api": {
+		"acmAWSAPI": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "rollcall8d33d1a4",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-roll-call-acm-163335-deployment/amplify-cfn-templates/api/acmAWSAPI-cloudformation-template.json",
+				"logicalId": "apiacmAWSAPI"
+			},
+			"lastPushTimeStamp": "2020-01-01T21:32:52.522Z",
+			"output": {
+				"ApiName": "acmAWSAPI",
+				"RootUrl": "https://xfhib9sft8.execute-api.us-east-1.amazonaws.com/acm"
+			},
+			"lastPushDirHash": "62IGW99xJMlFv6i/yIjloX7Tces="
+		}
+	}
+}

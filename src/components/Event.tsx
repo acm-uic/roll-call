@@ -84,12 +84,8 @@ const Event: FC<EventProps> = (props: EventProps) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" color="primary">
-
-                View
-              </Button>
-              <Button size="small" color="primary">
-                Edit
+              <Button size="large" color="primary">
+                Start Event Sign In
               </Button>
             </CardActions>
           </Card>

@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "rollcall8d33d1a4",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "acmAWSAPI",
+    "apiName": "acmAWSAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "rollcall8d33d1a4"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-roll-call-acm-163335-authRole",
+        "unAuthRoleName": "amplify-roll-call-acm-163335-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "rollcall8d33d1a4",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
