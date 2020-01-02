@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Home from './pages/Home';
-
+import SignIn from './pages/signIn';
+import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom'
 
 
   //TODO: CURRENT TASK
@@ -34,7 +35,36 @@ const App: React.FC = () => {
     }
 
   return (
-          <Home />
+
+          <Router>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/signin">signIn</Link>
+                </li>
+              </ul>
+            </nav>
+    
+            {/* A <Switch> looks through its children <Route>s and
+                renders the first one that matches the current URL. */}
+            <Switch>
+              <Route path="/home">
+                <Home />
+              </Route>
+              <Route path="/signin">
+                <SignIn/>
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+
   );
 
 }
