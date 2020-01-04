@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -88,6 +89,9 @@ class Events extends PureComponent<{}, EventsState> {
         </Toolbar>
       </AppBar>
 
+      <br/>
+
+      <Button size="large" color="primary"> Start Event Sign In </Button>
 
     {(this.state.events && this.state.events.items)
     ? this.state.events.items.map((ev, key) =>
@@ -95,8 +99,6 @@ class Events extends PureComponent<{}, EventsState> {
     : (<></>)}
 
     </React.Fragment>      
-
-
 
         </>);
     }

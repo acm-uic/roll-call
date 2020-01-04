@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import * as GCalApi from '../calendarImports/GCalApi'; 
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom'
 
 interface EventProps {
     ev: GCalApi.Event;
@@ -48,19 +46,19 @@ const useStyles = makeStyles(theme => ({
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const cards = [1];
 
+  //FIXME: why is this getting called even though button isn't clicked
+
 const Event: FC<EventProps> = (props: EventProps) => {
 
-  // redirectPage = () => {
-  // };
 
     const { summary, location, start, end } = props.ev;
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const classes = useStyles();
     return (
 
-
-
 <React.Fragment>
+
+
 <CssBaseline />
 
   <Container className={classes.cardGrid} maxWidth="md">
@@ -89,9 +87,11 @@ const Event: FC<EventProps> = (props: EventProps) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="large" color="primary" component={Link} to={'/UINPage'}>
+{/* 
+              <Button size="large" color="primary" component={Link} to={'/UINPage'} >
                 Start Event Sign In
-              </Button>
+              </Button> */}
+ 
             </CardActions>
           </Card>
         </Grid>
