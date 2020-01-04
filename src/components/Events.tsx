@@ -4,6 +4,8 @@ import * as GCalApi from '../calendarImports/GCalApi';
 import { GetEvents } from '../util/Events';
 import { EventsConfig } from '../util/Config';
 import { GetUserConfig } from '../util/UserConfig';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 interface EventsState {
     events: GCalApi.Events | undefined;
@@ -15,11 +17,16 @@ interface EventProps {
 
 
 class Events extends PureComponent<{}, EventsState> {
+    currentVar: { selectedValue: any; };
     constructor(props: {}) {
         super(props);
         this.state = {
             events: undefined
         };
+
+        this.currentVar = {
+            selectedValue: ""
+        }
     }
     componentDidMount() {
         this.update();
@@ -37,13 +44,27 @@ class Events extends PureComponent<{}, EventsState> {
                 events: await GetEvents({ calendarId, apiKey })     
             });
     }
+
+      //we are creating the options to be displayed
+  renderOptions() {
+      //@ts-ignore
+    return this.state.events.items.map((ev, key) => {
+      return (
+        <div key={key}>
+          <MenuItem
+            value={ev.summary}
+            primaryText={ev.summary} />
+        </div>
+      );
+    });
+  }
+
     render = () => {
         //render outer page frame here
         return (
             <div>
-                <select name="name" id="idk">
-
-                    { (this.state.events && this.state.events.items) ?  this.state.events.items.map((ev, key) => <option key={key} value={key}> {ev.summary} </option>) :  (<></>) }
+                <select value={this.currentVar.selectedValue} >
+                    
 
                 </select>
 
