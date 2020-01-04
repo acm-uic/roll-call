@@ -49,6 +49,10 @@ const useStyles = makeStyles(theme => ({
   const cards = [1];
 
 const Event: FC<EventProps> = (props: EventProps) => {
+
+  // redirectPage = () => {
+  // };
+
     const { summary, location, start, end } = props.ev;
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const classes = useStyles();
@@ -85,7 +89,7 @@ const Event: FC<EventProps> = (props: EventProps) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="large" color="primary" component={Link} to={'/signin'}>
+              <Button size="large" color="primary" component={Link} to={'/UINPage'}>
                 Start Event Sign In
               </Button>
             </CardActions>
