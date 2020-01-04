@@ -9,6 +9,11 @@ interface EventsState {
     events: GCalApi.Events | undefined;
 }
 
+interface EventProps {
+  ev: GCalApi.Event;
+};
+
+
 class Events extends PureComponent<{}, EventsState> {
     constructor(props: {}) {
         super(props);
@@ -34,13 +39,27 @@ class Events extends PureComponent<{}, EventsState> {
     }
     render = () => {
         //render outer page frame here
-        return (<>
-            {(this.state.events && this.state.events.items)
-                ? this.state.events.items.map((ev, key) =>
-                    (<Event key={key} ev={ev} />)) //render material card for each event
-                : (<></>)}
-        </>);
+        return (
+            <div>
+                <select name="name" id="idk">
+
+                    { (this.state.events && this.state.events.items) ?  this.state.events.items.map((ev, key) => <option key={key} value={key}> {ev.summary} </option>) :  (<></>) }
+
+                </select>
+
+
+            </div>
+        );
     }
 }
 
 export default Events;
+
+// {(this.state.events && this.state.events.items)
+//     ? 
+//     <select>
+//     this.state.events.items.map((ev, key) => (
+//       (<Event key={key} ev={ev} />)) 
+//     )
+//     </select>
+//     : (<></>)}

@@ -153,7 +153,7 @@ export interface Event {
     } | null;
     start?: EventDateTime;
     status?: string | null;
-    summary?: string | null;
+    summary?: string | null ;
     transparency?: string | null;
     updated?: string | null;
     visibility?: string | null;
