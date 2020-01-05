@@ -105,5 +105,3 @@ class Events extends PureComponent<{}, EventsState> {
 }
 
 export default Events;
-
-   
