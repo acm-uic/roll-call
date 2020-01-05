@@ -13,7 +13,6 @@ interface EventProps {
   ev: GCalApi.Event;
 };
 
-
 class Events extends PureComponent<{}, EventsState> {
     currentVar: { selectedValue: any; };
     constructor(props: {}) {
@@ -30,7 +29,11 @@ class Events extends PureComponent<{}, EventsState> {
         this.update();
         setInterval(this.update, EventsConfig.UpdateInterval);
     }
+
+
+
     update = async () => {
+
         const calendarId = GetUserConfig({
             name: EventsConfig.IdsName
         });
@@ -41,23 +44,39 @@ class Events extends PureComponent<{}, EventsState> {
             this.setState({
                 events: await GetEvents({ calendarId, apiKey })     
             });
+
+        //sets the initial chosen event since the default dropdown value is the first element
+        if((this.state.events && this.state.events.items)){
+            //@ts-ignore
+            sessionStorage.setItem('chosenEvent', this.state.events.items[0].summary )
+        }
+
     }
 
+
+    //this will called when button to start the event is chosen
+    startEvent = () => {
+        console.log( sessionStorage.getItem('chosenEvent') )
+        // the evenID should be passed into query string when next button redirects to UINPage. 
+        // use that to evenID to nest user UINs & signatures 
+    }
 
     render = () => {
         //render outer page frame here
         return (
             <div>
-                <select name="name" id="idk">
-
-                    { (this.state.events && this.state.events.items) ?  this.state.events.items.map((ev, key) => <option key={key} value={key}> {ev.summary} </option>) :  (<></>) }
-
+                {/* This dropdown lets you choose ACM events which are fetched from google cal api */}
+                <select name="name" id="id" onChange={(e) => sessionStorage.setItem('chosenEvent',  e.target.value) } >
+                    { (this.state.events && this.state.events.items) ?  this.state.events.items.map((ev, key) => <option key={key} value={ev.id}> {ev.summary} </option>) :  (<></>) }
                 </select>
 
+                <button onClick={this.startEvent} >Next</button>
 
             </div>
         );
     }
+
+
 }
 
 export default Events;

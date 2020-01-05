@@ -11,6 +11,7 @@ export interface Events {
     timeZone?: string | null;
     updated?: string | null;
 }
+
 export interface EventReminder {
     method?: string | null;
     minutes?: number | null;
@@ -128,7 +129,7 @@ export interface Event {
     hangoutLink?: string | null;
     htmlLink?: string | null;
     iCalUID?: string | null;
-    id?: string | null;
+    id?: string;
     kind?: string | null;
     location?: string | null;
     locked?: boolean | null;
@@ -153,7 +154,7 @@ export interface Event {
     } | null;
     start?: EventDateTime;
     status?: string | null;
-    summary?: string | null ;
+    summary?: string;
     transparency?: string | null;
     updated?: string | null;
     visibility?: string | null;
