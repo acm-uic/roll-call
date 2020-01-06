@@ -87,6 +87,7 @@ class Events extends PureComponent<{}, EventsState> {
 
    //this will called when button to start the event is chosen
    startEvent = () => {
+    // TODO: this is the eventID that should be stored in the database
     console.log( sessionStorage.getItem('chosenEvent') );
 
     // the eventID should be passed into query string when next button redirects to UINPage. 
