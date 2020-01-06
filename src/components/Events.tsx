@@ -9,7 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -51,6 +50,10 @@ interface EventsState {
     events: GCalApi.Events | undefined;
 }
 
+interface EventProps {
+  ev: GCalApi.Event;
+};
+
 class Events extends PureComponent<{}, EventsState> {
     constructor(props: {}) {
         super(props);
@@ -73,7 +76,25 @@ class Events extends PureComponent<{}, EventsState> {
             this.setState({
                 events: await GetEvents({ calendarId, apiKey })     
             });
+
+     //sets the initial chosen event since the default dropdown value is the first element
+     if((this.state.events && this.state.events.items)){
+        //@ts-ignore
+        sessionStorage.setItem('chosenEvent', this.state.events.items[0].id )
+     }
+
     }
+
+   //this will called when button to start the event is chosen
+   startEvent = () => {
+    console.log( sessionStorage.getItem('chosenEvent') );
+
+    // the eventID should be passed into query string when next button redirects to UINPage. 
+    // use that to evenID to nest user UINs & signatures 
+    window.location.href = "/UINPage/?eventID=" + sessionStorage.getItem('chosenEvent');
+
+   }
+
     render = () => {
         //render outer page frame here
 
@@ -91,8 +112,18 @@ class Events extends PureComponent<{}, EventsState> {
 
       <br/>
 
-      <Button size="large" color="primary"> Start Event Sign In </Button>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}} >
+          {/* This dropdown lets you choose ACM events which are fetched from google cal api */}
+          <select name="name" id="id" onChange={(e) => sessionStorage.setItem('chosenEvent',  e.target.value) } >
+              { (this.state.events && this.state.events.items) ?  this.state.events.items.map((ev, key) => <option key={key} value={ev.id}> {ev.summary} </option>) :  (<></>) }
+          </select>
 
+          <button onClick={this.startEvent} >Start Event</button>
+
+        </div>
+
+      <h1 style={{textAlign: "center"}} >Events Feed</h1>
+      
     {(this.state.events && this.state.events.items)
     ? this.state.events.items.map((ev, key) =>
         (<Event key={key} ev={ev} />)) //render material card for each event

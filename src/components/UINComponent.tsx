@@ -15,9 +15,10 @@ class UINComponent extends PureComponent<{}> {
         let UIN: string = (this.state.value);
 
         //TODO: here is the UIN store it into the database or put it into localstorage then submit with signature
-        console.log( UIN.substring(4,12) ); 
+        console.log( UIN.substring(4,13) ); 
         
-        localStorage.setItem('UIN', UIN.substring(4,12));
+        sessionStorage.setItem('UIN', UIN.substring(4,13));
+        window.location.href = "/signaturePage"
     }
   
     //@ts-ignore
@@ -51,8 +52,7 @@ class UINComponent extends PureComponent<{}> {
                 //@ts-ignore
                     disabled={!this.state.value}
                     className="add-item__button"
-                    onClick={this.add}
-                    
+                    onClick={this.add} 
                 >
                     Next
                 </button>

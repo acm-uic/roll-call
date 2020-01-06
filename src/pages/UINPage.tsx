@@ -4,6 +4,18 @@ import UINComponent from '../components/UINComponent';
 
 const UINPage: FC = () => {
 
+    if (window.location.search.length !== 0) {
+        const search = window.location.search.substring(1);
+        const params = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+        Object.keys(params).forEach(key => {
+          if (params[key].trim().length !== 0) {
+            localStorage.setItem(key, decodeURIComponent(params[key]));
+          }
+        });
+        window.location.href = "/UINPage/";
+      }
+  
+
     return (
         <>
 
