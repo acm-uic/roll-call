@@ -44,10 +44,9 @@ const useStyles = makeStyles(theme => ({
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-
-
 interface EventsState {
     events: GCalApi.Events | undefined;
+    mongoData : GCalApi.mongoSchema;
 }
 
 interface EventProps {
@@ -58,12 +57,25 @@ class Events extends PureComponent<{}, EventsState> {
     constructor(props: {}) {
         super(props);
         this.state = {
-            events: undefined
+            events: undefined,
+            mongoData: []
         };
     }
     componentDidMount() {
         this.update();
         setInterval(this.update, EventsConfig.UpdateInterval);
+
+        // fetch("http://localhost:8080/allEvents/").then(response => {
+          
+        //   console.log(response.json());          
+
+        // });
+
+        // fetch('https://api.mydomain.com')
+        // .then(response => response.json())
+        // .then(data => this.setState({ this.state.mongoData }));
+
+
     }
     update = async () => {
         const calendarId = GetUserConfig({
@@ -98,6 +110,7 @@ class Events extends PureComponent<{}, EventsState> {
 
     render = () => {
         //render outer page frame here
+        // const { mongoData } = this.state;
 
         return (<>
      
@@ -112,6 +125,9 @@ class Events extends PureComponent<{}, EventsState> {
       </AppBar>
 
       <br/>
+
+      <generatePDF />
+
 
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}} >
           {/* This dropdown lets you choose ACM events which are fetched from google cal api */}

@@ -20,8 +20,28 @@ class signaturePage extends Component {
       let signatureBase64: string = (this.sigPad.getTrimmedCanvas().toDataURL('image/png'));
 
       //TODO: substring to store in database for base64 of signature --> signatureBase64.substring(22, (signatureBase64).length)
+      signatureBase64 = signatureBase64.substring(22, (signatureBase64).length);
+      // sessionStorage.setItem('signatureBase64', signatureBase64.substring(22, (signatureBase64).length) );
+
+      //------------------------------------------------------
+      //making JSON object for post request
+      let databody = {
+        "chosenEvent": sessionStorage.getItem('chosenEvent'),
+        "UIN": sessionStorage.getItem('UIN'),
+        "signatureBase64": signatureBase64
+      }
       
-      localStorage.setItem('signatureBase64', signatureBase64.substring(22, (signatureBase64).length) );
+      fetch("http://localhost:8080/addEvent/", {
+              method: 'POST',
+              body: JSON.stringify(databody),
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+      })
+      .then(res => res.json())
+      .then(data => console.log(data));
+      //------------------------------------------------------
+
 
       this.redirect();
 

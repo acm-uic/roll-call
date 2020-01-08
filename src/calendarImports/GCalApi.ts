@@ -85,6 +85,12 @@ export interface EventDateTime {
     dateTime?: string | null;
     timeZone?: string | null;
 }
+
+export interface mongoSchema {
+    map(arg0: (hit: any) => JSX.Element): import("react").ReactNode;
+    data?: string[];
+}
+
 export interface Event {
     anyoneCanAddSelf?: boolean | null;
     attachments?: EventAttachment[];
