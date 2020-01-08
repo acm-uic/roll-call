@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import generatePDF from '../components/generatePDF';
 
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -126,7 +127,8 @@ class Events extends PureComponent<{}, EventsState> {
 
       <br/>
 
-      <generatePDF />
+      {/* <generatePDF /> */}
+
 
 
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}} >

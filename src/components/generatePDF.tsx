@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import * as GCalApi from '../calendarImports/GCalApi'; 
 
-class generatePDF extends React.Component {
+interface EventsState {
+    events: GCalApi.Events | undefined;
+    mongoData : GCalApi.mongoSchema;
+}
 
-    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(props: {}){
+class generatePDF extends PureComponent<{}, EventsState> {
+
+    constructor(props: {}) {
         super(props);
+        this.state = {
+            events: undefined,
+            mongoData: []
+        };
     }
+
     componentDidMount() {
         
         fetch("http://localhost:8080/allEvents/").then(response => {
@@ -17,7 +27,7 @@ class generatePDF extends React.Component {
     render(){
         return(
             <div>
-
+                <p>girgihi</p>
             </div>
         )
     }
