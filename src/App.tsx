@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Home from './pages/Home';
-import SignIn from './pages/signIn';
+import SignaturePage from './pages/signaturePage';
+import UINPage from './pages/UINPage';
 import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom'
 
 
@@ -44,7 +45,10 @@ const App: React.FC = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/signin">signIn</Link>
+                  <Link to="/UINPage">UINPage</Link>
+                </li>                
+                <li>
+                  <Link to="/signaturePage">signaturePage</Link>
                 </li>
               </ul>
             </nav>
@@ -55,8 +59,11 @@ const App: React.FC = () => {
               <Route path="/home">
                 <Home />
               </Route>
-              <Route path="/signin">
-                <SignIn/>
+              <Route path="/UINPage">
+                <UINPage/>
+              </Route>              
+              <Route path="/signaturePage">
+                <SignaturePage/>
               </Route>
               <Route path="/">
                 <Home />

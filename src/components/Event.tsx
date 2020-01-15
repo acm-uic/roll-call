@@ -83,7 +83,7 @@ const Event: FC<EventProps> = (props: EventProps) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="large" color="primary" component={Link} to={'/signin'}>
+              <Button size="large" color="primary" component={Link} to={'/UINPage'}>
                 Start Event Sign In
               </Button>
             </CardActions>
