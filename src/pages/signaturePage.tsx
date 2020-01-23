@@ -28,7 +28,8 @@ class signaturePage extends Component {
       let databody = {
         "chosenEvent": sessionStorage.getItem('chosenEvent'),
         "UIN": sessionStorage.getItem('UIN'),
-        "signatureBase64": signatureBase64
+        "signatureBase64": signatureBase64,
+        "cardValue": sessionStorage.getItem('cardValue')
       }
       
       fetch("http://localhost:8080/addEvent/", {

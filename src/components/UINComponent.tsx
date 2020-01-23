@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom'
+import React, { PureComponent, FormEvent } from 'react';
+import { Redirect } from 'react-router-dom'
 
 class UINComponent extends PureComponent<{}> {
     constructor(props: {}) {
@@ -9,16 +9,21 @@ class UINComponent extends PureComponent<{}> {
       this.add = this.add.bind(this);
     }
   
-    add() {
+    add(e: FormEvent) {
+      e.preventDefault();
         //getting the substring
         //@ts-ignore
         let UIN: string = (this.state.value);
 
         //TODO: here is the UIN store it into the database or put it into localstorage then submit with signature
-        console.log( UIN.substring(4,13) ); 
-        
-        sessionStorage.setItem('UIN', UIN.substring(4,13));
+        console.log( UIN ); 
+        console.log( UIN.substring(6,15) ); 
+
+        sessionStorage.setItem('UIN', UIN.substring(6,15) ) ;
+        sessionStorage.setItem('cardValue', UIN ) ;
+
         window.location.href = "/signaturePage"
+
     }
   
     //@ts-ignore
@@ -34,6 +39,7 @@ class UINComponent extends PureComponent<{}> {
 
       return (
         <div className="add-item" style={divStyle}>
+          <form onSubmit={this.add}>
           <input
             type="text"
             className="add-item__input"
@@ -46,9 +52,14 @@ class UINComponent extends PureComponent<{}> {
 
             <br/><br/>
 
-            <Link to="/signaturePage">
+                <input type='submit'
+                //@ts-ignore
+                    disabled={!this.state.value}
+                    className="add-item__button"
+                    value='next'
+                />
 
-                <button
+        <button
                 //@ts-ignore
                     disabled={!this.state.value}
                     className="add-item__button"
@@ -57,7 +68,10 @@ class UINComponent extends PureComponent<{}> {
                     Next
                 </button>
 
-            </Link>
+
+                
+
+          </form>
         </div>
       );
     }
