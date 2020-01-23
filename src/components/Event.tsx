@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import * as GCalApi from '../calendarImports/GCalApi'; 
+import * as GCalApi from '../calendarImports/GCalApi';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,40 +12,40 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 interface EventProps {
-    ev: GCalApi.Event;
+  ev: GCalApi.Event;
 };
 
 const useStyles = makeStyles(theme => ({
-    icon: {
-      marginRight: theme.spacing(2),
-    },
-    heroContent: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(8, 0, 6),
-    },
-    cardGrid: {
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
-    },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    footer: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(6),
-    },
-  }));
-  
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  const cards = [1];
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
+}));
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const cards = [1];
 
   //FIXME: why is this getting called even though button isn't clicked
 
@@ -56,14 +57,13 @@ const Event: FC<EventProps> = (props: EventProps) => {
     const classes = useStyles();
     return (
 
-<React.Fragment>
 
 
-<CssBaseline />
 
-  <Container className={classes.cardGrid} maxWidth="md">
-    {/* End hero unit */}
-    <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
+    <React.Fragment>
+      <CssBaseline />
+
+      {/* End hero unit */}
       {cards.map(card => (
         <Grid item xs sm md lg key={card}>
           <Card className={classes.card} raised>
@@ -75,14 +75,14 @@ const Event: FC<EventProps> = (props: EventProps) => {
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h5" component="h2">
 
-              {summary ? summary : 'Busy'}
+                {summary ? summary : 'Busy'}
 
               </Typography>
               <Typography>
 
-        <div>  
-            {start ? (start.dateTime ? start.dateTime : start.date) : <></>} | {end ? (end.dateTime ? end.dateTime : end.date) : <></>} | {location}
-        </div>
+                <div>
+                  {start ? (start.dateTime ? start.dateTime : start.date) : <></>} | {end ? (end.dateTime ? end.dateTime : end.date) : <></>} | {location}
+                </div>
 
               </Typography>
             </CardContent>
@@ -96,12 +96,8 @@ const Event: FC<EventProps> = (props: EventProps) => {
           </Card>
         </Grid>
       ))}
-    </Grid>
-  </Container>
-
-
-</React.Fragment>
-    );
+    </React.Fragment>
+  );
 }
 
 export default Event;
