@@ -17,3 +17,5 @@ export const GetEvents = async ({ calendarId, apiKey, maxResults }: GetEventsPar
             .catch(reject);
     });
 }
+
+// http://localhost:3000/?calendarId=5v13klqet0aeeerag46thp4b7g@group.calendar.google.com&apiKey=AIzaSyAf4w5K2rORWzhfMEQwDDN5rewTEwfD_SU

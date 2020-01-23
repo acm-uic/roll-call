@@ -59,14 +59,6 @@ class UINComponent extends PureComponent<{}> {
                     value='next'
                 />
 
-        <button
-                //@ts-ignore
-                    disabled={!this.state.value}
-                    className="add-item__button"
-                    onClick={this.add} 
-                >
-                    Next
-                </button>
 
 
                 
