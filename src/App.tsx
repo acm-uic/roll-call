@@ -5,12 +5,9 @@ import SignaturePage from './pages/signaturePage';
 import UINPage from './pages/UINPage';
 import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom'
 
-//http://localhost:3000/?calendarId=5v13klqet0aeeerag46thp4b7g@group.calendar.google.com&apiKey=AIzaSyAf4w5K2rORWzhfMEQwDDN5rewTEwfD_SU
-
   //TODO: CURRENT TASK
   //1. set up api in local_storage --> coming form url?
     // example:  http://localhost:3000/?googleapikey=value1&googlecalendarids=value2
-    //http://localhost:3000/?googleapikey=AIzaSyAf4w5K2rORWzhfMEQwDDN5rewTEwfD_SU&googlecalendarids=5v13klqet0aeeerag46thp4b7g@group.calendar.google.com
     
     // key1 is (apiKey) key2 is (calendarId)
   //2. get events to print out w/o any front end --> doesn't work? --> ask bharat & slack channel

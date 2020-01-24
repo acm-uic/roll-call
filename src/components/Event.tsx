@@ -52,9 +52,25 @@ const cards = [1];
 const Event: FC<EventProps> = (props: EventProps) => {
 
 
-    const { summary, location, start, end } = props.ev;
+    const { summary, location, start, end, id } = props.ev;
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const classes = useStyles();
+
+
+
+    const handleClick = () => {
+      console.log(id);
+      // adding evenID in sessionStorage
+      if (id !== undefined)
+        sessionStorage.setItem('chosenEvent', id );
+
+      if (summary !== undefined)
+        sessionStorage.setItem('EventName', summary );
+        
+      window.location.href = "/UINPage"
+
+    }
+
     return (
 
 
@@ -80,9 +96,9 @@ const Event: FC<EventProps> = (props: EventProps) => {
               </Typography>
               <Typography>
 
-                <div>
+
                   {start ? (start.dateTime ? start.dateTime : start.date) : <></>} | {end ? (end.dateTime ? end.dateTime : end.date) : <></>} | {location}
-                </div>
+
 
               </Typography>
             </CardContent>
@@ -91,6 +107,10 @@ const Event: FC<EventProps> = (props: EventProps) => {
               <Button size="large" color="primary" component={Link} to={'/UINPage'} >
                 Start Event Sign In
               </Button> */}
+
+              {/* <button>Start Event</button> */}
+
+              <Button size="small" color="primary" onClick={handleClick}>Start Event</Button>              
  
             </CardActions>
           </Card>

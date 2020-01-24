@@ -27,6 +27,7 @@ class signaturePage extends Component {
       //making JSON object for post request
       let databody = {
         "chosenEvent": sessionStorage.getItem('chosenEvent'),
+        "EventName": sessionStorage.getItem('EventName'),
         "UIN": sessionStorage.getItem('UIN'),
         "signatureBase64": signatureBase64,
         "cardValue": sessionStorage.getItem('cardValue')

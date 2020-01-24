@@ -60,9 +60,6 @@ class UINComponent extends PureComponent<{}> {
                 />
 
 
-
-                
-
           </form>
         </div>
       );
