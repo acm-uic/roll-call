@@ -22,7 +22,7 @@ class UINComponent extends PureComponent<{}> {
         sessionStorage.setItem('UIN', UIN.substring(6,15) ) ;
         sessionStorage.setItem('cardValue', UIN ) ;
 
-        window.location.href = "/signaturePage"
+        window.location.href = "/signaturePage" 
 
     }
   
@@ -58,6 +58,8 @@ class UINComponent extends PureComponent<{}> {
                     className="add-item__button"
                     value='next'
                 />
+
+
 
 
           </form>
