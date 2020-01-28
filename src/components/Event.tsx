@@ -9,7 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 
 interface EventProps {
   ev: GCalApi.Event;
@@ -47,31 +46,31 @@ const useStyles = makeStyles(theme => ({
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const cards = [1];
 
-  //FIXME: why is this getting called even though button isn't clicked
+//FIXME: why is this getting called even though button isn't clicked
 
 const Event: FC<EventProps> = (props: EventProps) => {
 
 
-    const { summary, location, start, end, id } = props.ev;
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const classes = useStyles();
+  const { summary, location, start, end, id } = props.ev;
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  const classes = useStyles();
 
 
 
-    const handleClick = () => {
-      console.log(id);
-      // adding evenID in sessionStorage
-      if (id !== undefined)
-        sessionStorage.setItem('chosenEvent', id );
+  const handleClick = () => {
+    console.log(id);
+    // adding evenID in sessionStorage
+    if (id !== undefined)
+      sessionStorage.setItem('chosenEvent', id);
 
-      if (summary !== undefined)
-        sessionStorage.setItem('EventName', summary );
-        
-      window.location.href = "/UINPage"
+    if (summary !== undefined)
+      sessionStorage.setItem('EventName', summary);
 
-    }
+    window.location.href = "/UINPage"
 
-    return (
+  }
+
+  return (
 
 
 
@@ -97,21 +96,21 @@ const Event: FC<EventProps> = (props: EventProps) => {
               <Typography>
 
 
-                  {start ? (start.dateTime ? start.dateTime : start.date) : <></>} | {end ? (end.dateTime ? end.dateTime : end.date) : <></>} | {location}
+                {start ? (start.dateTime ? start.dateTime : start.date) : <></>} | {end ? (end.dateTime ? end.dateTime : end.date) : <></>} | {location}
 
 
               </Typography>
             </CardContent>
             <CardActions>
-{/* 
+              {/* 
               <Button size="large" color="primary" component={Link} to={'/UINPage'} >
                 Start Event Sign In
               </Button> */}
 
               {/* <button>Start Event</button> */}
 
-              <Button size="small" color="primary" onClick={handleClick}>Start Event</Button>              
- 
+              <Button size="small" color="primary" onClick={handleClick}>Start Event</Button>
+
             </CardActions>
           </Card>
         </Grid>
