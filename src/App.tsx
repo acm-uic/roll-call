@@ -71,7 +71,6 @@ const App: React.FC = () => {
             </Switch>
           </div>
         </Router>
-
   );
 
 }
