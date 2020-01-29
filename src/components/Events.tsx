@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Event from './Event';
 import * as GCalApi from '../calendarImports/GCalApi';
 import { GetEvents } from '../util/Events';
-import { EventsConfig } from '../util/Config';
+import { EventsConfig } from '../calendarImports/Config';
 import { GetUserConfig } from '../util/UserConfig';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
