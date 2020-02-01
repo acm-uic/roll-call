@@ -14,7 +14,7 @@ _TODO_
 
 ## Screenshots
 
-_TODO_
+![alt text](https://i.imgur.com/UPXh6Bl.png)
 
 ## Getting Started
 
