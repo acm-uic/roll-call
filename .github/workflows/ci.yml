@@ -3,12 +3,24 @@ name: CI
 on: [push, pull_request]
 
 jobs:
+  prettier-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Prettier check
+      run: npx prettier --check "./**/*.{js,jsx,tsx,html,json,css,md}"
+
   build-node:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x, 12.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:

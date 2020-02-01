@@ -1,7 +1,6 @@
 {
-    "clientId": "960484258151-6vt54cv7378jk6vbspvuc8nhonimski9.apps.googleusercontent.com",
-    "apiKey": "AIzaSyAO5YIHy0dAuUL-4_esoo5dHLCs6muT6oQ",
-    "scope": "https://www.googleapis.com/auth/calendar",
-    "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
+  "clientId": "960484258151-6vt54cv7378jk6vbspvuc8nhonimski9.apps.googleusercontent.com",
+  "apiKey": "AIzaSyAO5YIHy0dAuUL-4_esoo5dHLCs6muT6oQ",
+  "scope": "https://www.googleapis.com/auth/calendar",
+  "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
 }
-

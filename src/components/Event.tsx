@@ -12,35 +12,35 @@ import { makeStyles } from '@material-ui/core/styles';
 
 interface EventProps {
   ev: GCalApi.Event;
-};
+}
 
 const useStyles = makeStyles(theme => ({
   icon: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(8, 0, 6)
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: theme.spacing(8)
   },
   card: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   cardContent: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
+    padding: theme.spacing(6)
+  }
 }));
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -49,32 +49,21 @@ const cards = [1];
 //FIXME: why is this getting called even though button isn't clicked
 
 const Event: FC<EventProps> = (props: EventProps) => {
-
-
   const { summary, location, start, end, id } = props.ev;
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const classes = useStyles();
 
-
-
   const handleClick = () => {
     console.log(id);
     // adding evenID in sessionStorage
-    if (id !== undefined)
-      sessionStorage.setItem('chosenEvent', id);
+    if (id !== undefined) sessionStorage.setItem('chosenEvent', id);
 
-    if (summary !== undefined)
-      sessionStorage.setItem('EventName', summary);
+    if (summary !== undefined) sessionStorage.setItem('EventName', summary);
 
-    window.location.href = "/UINPage"
-
-  }
+    window.location.href = '/UINPage';
+  };
 
   return (
-
-
-
-
     <React.Fragment>
       <CssBaseline />
 
@@ -89,16 +78,11 @@ const Event: FC<EventProps> = (props: EventProps) => {
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h5" component="h2">
-
                 {summary ? summary : 'Busy'}
-
               </Typography>
               <Typography>
-
-
-                {start ? (start.dateTime ? start.dateTime : start.date) : <></>} | {end ? (end.dateTime ? end.dateTime : end.date) : <></>} | {location}
-
-
+                {start ? start.dateTime ? start.dateTime : start.date : <></>} |{' '}
+                {end ? end.dateTime ? end.dateTime : end.date : <></>} | {location}
               </Typography>
             </CardContent>
             <CardActions>
@@ -109,17 +93,15 @@ const Event: FC<EventProps> = (props: EventProps) => {
 
               {/* <button>Start Event</button> */}
 
-              <Button size="small" color="primary" onClick={handleClick}>Start Event</Button>
-
+              <Button size="small" color="primary" onClick={handleClick}>
+                Start Event
+              </Button>
             </CardActions>
           </Card>
         </Grid>
       ))}
     </React.Fragment>
   );
-}
+};
 
 export default Event;
-
-
-

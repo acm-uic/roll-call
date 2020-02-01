@@ -12,7 +12,7 @@ class UINComponent extends PureComponent<{}> {
     e.preventDefault();
     //getting the substring
     //@ts-ignore
-    let UIN: string = (this.state.value);
+    let UIN: string = this.state.value;
 
     //TODO: here is the UIN store it into the database or put it into localstorage then submit with signature
     console.log(UIN);
@@ -21,8 +21,7 @@ class UINComponent extends PureComponent<{}> {
     sessionStorage.setItem('UIN', UIN.substring(6, 15));
     sessionStorage.setItem('cardValue', UIN);
 
-    window.location.href = "/signaturePage"
-
+    window.location.href = '/signaturePage';
   }
 
   //@ts-ignore
@@ -31,9 +30,8 @@ class UINComponent extends PureComponent<{}> {
   }
 
   render() {
-
     const divStyle = {
-      margin: "20px"
+      margin: '20px'
     };
 
     return (
@@ -49,18 +47,16 @@ class UINComponent extends PureComponent<{}> {
             placeholder={this.props.placeholder}
           />
 
-          <br /><br />
+          <br />
+          <br />
 
-          <input type='submit'
+          <input
+            type="submit"
             //@ts-ignore
             disabled={!this.state.value}
             className="add-item__button"
-            value='next'
+            value="next"
           />
-
-
-
-
         </form>
       </div>
     );
