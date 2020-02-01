@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 class signaturePage extends Component {
   state = { trimmedDataURL: null };
-  sigPad = {};
+  sigPad: SignatureCanvas | null = null;
   clear = () => {
     //@ts-ignore
     this.sigPad.clear();
