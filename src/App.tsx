@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Home from './pages/Home';
 import SignaturePage from './pages/signaturePage';

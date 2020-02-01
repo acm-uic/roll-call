@@ -1,31 +1,24 @@
 // -----------------------------
 
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import styles from './styles.module.css';
 
-class signaturePage extends Component {
-  state = { trimmedDataURL: null };
-  sigPad: SignatureCanvas | null = null;
-  clear = () => {
-    //@ts-ignore
-    this.sigPad.clear();
+const SignaturePad: FC = () => {
+  let sigPad: SignatureCanvas | null = null;
+  const clear = () => {
+    sigPad?.clear();
   };
-  trim = () => {
-    //@ts-ignore
-    this.setState({ trimmedDataURL: this.sigPad.getTrimmedCanvas().toDataURL('image/png') });
-
-    //@ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let signatureBase64: string = this.sigPad.getTrimmedCanvas().toDataURL('image/png');
+  const trim = () => {
+    let signatureBase64: string | undefined = sigPad?.getTrimmedCanvas().toDataURL('image/png');
 
     //TODO: substring to store in database for base64 of signature --> signatureBase64.substring(22, (signatureBase64).length)
-    signatureBase64 = signatureBase64.substring(22, signatureBase64.length);
+    signatureBase64 = signatureBase64?.substring(22, signatureBase64.length);
     // sessionStorage.setItem('signatureBase64', signatureBase64.substring(22, (signatureBase64).length) );
 
     //------------------------------------------------------
     //making JSON object for post request
-    let databody = {
+    let dataBody = {
       chosenEvent: sessionStorage.getItem('chosenEvent'),
       EventName: sessionStorage.getItem('EventName'),
       UIN: sessionStorage.getItem('UIN'),
@@ -35,7 +28,7 @@ class signaturePage extends Component {
 
     fetch('http://localhost:8080/addEvent/', {
       method: 'POST',
-      body: JSON.stringify(databody),
+      body: JSON.stringify(dataBody),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -44,44 +37,36 @@ class signaturePage extends Component {
       .then(data => console.log(data));
     //------------------------------------------------------
 
-    this.redirect();
-
-    //@ts-ignore
-    // console.log(signatureBase64.substring(22, (signatureBase64).length) );
+    redirect();
   };
 
-  redirect = () => {
-    // eslint-disable-next-line no-restricted-globals
-    let r = confirm('Sign in successful. Click ok for next user.');
-    // eslint-disable-next-line eqeqeq
-    if (r == true) {
+  const redirect = () => {
+    let r = window.confirm('Sign in successful. Click ok for next user.');
+    if (r === true) {
       window.location.href = '/UINPage';
     }
   };
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.sigContainer}>
-          <SignatureCanvas
-            canvasProps={{ className: styles.sigPad }}
-            //@ts-ignore
-            ref={ref => {
-              this.sigPad = ref;
-            }}
-          />
-        </div>
-        <div>
-          <button className={styles.buttons} onClick={this.clear}>
-            Clear
-          </button>
-          <button className={styles.buttons} onClick={this.trim}>
-            Complete Sign In
-          </button>
-        </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.sigContainer}>
+        <SignatureCanvas
+          canvasProps={{ className: styles.sigPad }}
+          ref={ref => {
+            sigPad = ref;
+          }}
+        />
       </div>
-    );
-  }
-}
+      <div>
+        <button className={styles.buttons} onClick={clear}>
+          Clear
+        </button>
+        <button className={styles.buttons} onClick={trim}>
+          Complete Sign In
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default signaturePage;
+export default SignaturePad;
