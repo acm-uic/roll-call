@@ -43,14 +43,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 const cards = [1];
 
 //FIXME: why is this getting called even though button isn't clicked
 
 const Event: FC<EventProps> = (props: EventProps) => {
   const { summary, location, start, end, id } = props.ev;
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   const classes = useStyles();
 
   const handleClick = () => {

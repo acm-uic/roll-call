@@ -1,20 +1,13 @@
-import React, { PureComponent, FormEvent } from 'react';
+import React, { FC, useState, FormEvent, ChangeEvent } from 'react';
 
-class UINComponent extends PureComponent<{}> {
-  constructor(props: {}) {
-    super(props);
-    this.state = { value: '' };
-    this.onChange = this.onChange.bind(this);
-    this.add = this.add.bind(this);
-  }
+const UINComponent: FC = (props: React.HTMLProps<HTMLInputElement>) => {
+  const [value, setValue] = useState('');
 
-  add(e: FormEvent) {
+  const add = (e: FormEvent) => {
     e.preventDefault();
-    //getting the substring
-    //@ts-ignore
-    let UIN: string = this.state.value;
+    let UIN: string = value;
 
-    //TODO: here is the UIN store it into the database or put it into localstorage then submit with signature
+    //TODO: here is the UIN store it into the database or put it into LocalStorage then submit with signature
     console.log(UIN);
     console.log(UIN.substring(6, 15));
 
@@ -22,45 +15,34 @@ class UINComponent extends PureComponent<{}> {
     sessionStorage.setItem('cardValue', UIN);
 
     window.location.href = '/signaturePage';
-  }
+  };
 
-  //@ts-ignore
-  onChange(e) {
-    this.setState({ value: e.target.value });
-  }
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
 
-  render() {
-    const divStyle = {
-      margin: '20px'
-    };
+  const divStyle = {
+    margin: '20px'
+  };
 
-    return (
-      <div className="add-item" style={divStyle}>
-        <form onSubmit={this.add}>
-          <input
-            type="text"
-            className="add-item__input"
-            //@ts-ignore
-            value={this.state.value}
-            onChange={this.onChange}
-            //@ts-ignore
-            placeholder={this.props.placeholder}
-          />
+  return (
+    <div className="add-item" style={divStyle}>
+      <form onSubmit={add}>
+        <input
+          type="text"
+          className="add-item__input"
+          value={value}
+          onChange={onChange}
+          placeholder={props.placeholder}
+        />
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <input
-            type="submit"
-            //@ts-ignore
-            disabled={!this.state.value}
-            className="add-item__button"
-            value="next"
-          />
-        </form>
-      </div>
-    );
-  }
-}
+        <input type="submit" disabled={!value} className="add-item__button" value="next" />
+      </form>
+    </div>
+  );
+};
 
 export default UINComponent;
