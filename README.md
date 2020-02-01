@@ -14,7 +14,7 @@ _TODO_
 
 ## Screenshots
 
-_TODO_
+![alt text](public/images/acm-roll-call-homepage.png)
 
 ## Getting Started
 
