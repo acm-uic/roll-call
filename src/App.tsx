@@ -1,8 +1,12 @@
 import React from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Home from './pages/Home';
 import SignaturePage from './pages/signaturePage';
 import UINPage from './pages/UINPage';
-import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 //TODO: CURRENT TASK
 //1. set up api in local_storage --> coming form url?
@@ -39,41 +43,35 @@ const App: React.FC = () => {
     window.location.href = '/';
   }
 
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/UINPage">UINPage</Link>
-            </li>
-            <li>
-              <Link to="/signaturePage">signaturePage</Link>
-            </li>
-          </ul>
-        </nav>
+  const theme = createMuiTheme({
+    palette: {
+      type: 'light'
+    }
+  });
 
-        {/* A <Switch> looks through its children <Route>s and
-                renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/UINPage">
-            <UINPage />
-          </Route>
-          <Route path="/signaturePage">
-            <SignaturePage />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+  return (
+    <>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/UINPage">
+              <UINPage />
+            </Route>
+            <Route path="/signaturePage">
+              <SignaturePage />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </ThemeProvider>
+    </>
   );
 };
 

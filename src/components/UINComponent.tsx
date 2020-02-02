@@ -35,10 +35,7 @@ const UINComponent: FC = (props: React.HTMLProps<HTMLInputElement>) => {
           onChange={onChange}
           placeholder={props.placeholder}
         />
-
         <br />
-        <br />
-
         <input type="submit" disabled={!value} className="add-item__button" value="next" />
       </form>
     </div>
