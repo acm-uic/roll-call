@@ -15,7 +15,6 @@ const Home: FC = () => {
       console.log('UIN: ' + uin);
       console.log('Sign: ' + sign);
 
-      setEvent('');
       setUIN('');
       setSign('');
     }
