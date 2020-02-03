@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Home from './pages/Home';
-import SignaturePage from './pages/signaturePage';
+import SignaturePage from './components/signaturePage';
 import UINPage from './pages/UINPage';
 import Header from './components/Header';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -59,12 +59,12 @@ const App: React.FC = () => {
             <Route path="/home">
               <Home />
             </Route>
-            <Route path="/UINPage">
+            {/* <Route path="/UINPage">
               <UINPage />
             </Route>
             <Route path="/signaturePage">
               <SignaturePage />
-            </Route>
+            </Route> */}
             <Route path="/">
               <Home />
             </Route>

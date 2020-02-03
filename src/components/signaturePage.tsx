@@ -1,18 +1,22 @@
-// -----------------------------
-
 import React, { FC } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
-import styles from './styles.module.css';
+import styles from '../pages/styles.module.css';
 
-const SignaturePad: FC = () => {
+interface SignProps {
+  setSign: Function;
+}
+
+const SignaturePad: FC<SignProps> = (props: SignProps) => {
   let sigPad: SignatureCanvas | null = null;
+
   const clear = () => {
     sigPad?.clear();
   };
+
   const trim = () => {
+    // sigPad?.getTrimmedCanvas().toDataURL('image/png');
     let signatureBase64: string | undefined = sigPad?.getTrimmedCanvas().toDataURL('image/png');
 
-    //TODO: substring to store in database for base64 of signature --> signatureBase64.substring(22, (signatureBase64).length)
     signatureBase64 = signatureBase64?.substring(22, signatureBase64.length);
     // sessionStorage.setItem('signatureBase64', signatureBase64.substring(22, (signatureBase64).length) );
 
@@ -26,26 +30,27 @@ const SignaturePad: FC = () => {
       cardValue: sessionStorage.getItem('cardValue')
     };
 
-    fetch('http://localhost:8080/addEvent/', {
-      method: 'POST',
-      body: JSON.stringify(dataBody),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
-    //------------------------------------------------------
+    // fetch('http://localhost:8080/addEvent/', {
+    //   method: 'POST',
+    //   body: JSON.stringify(dataBody),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(data => console.log(data));
+    // //------------------------------------------------------
 
-    redirect();
+    // redirect();
+    props.setSign(signatureBase64);
   };
 
-  const redirect = () => {
-    let r = window.confirm('Sign in successful. Click ok for next user.');
-    if (r === true) {
-      window.location.href = '/UINPage';
-    }
-  };
+  // const redirect = () => {
+  //   let r = window.confirm('Sign in successful. Click ok for next user.');
+  //   if (r === true) {
+  //     window.location.href = '/UINPage';
+  //   }
+  // };
 
   return (
     <div className={styles.container}>

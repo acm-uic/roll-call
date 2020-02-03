@@ -24,9 +24,10 @@ interface EventsProps {
   classes: {
     cardGrid: string;
   };
+  setEvent: Function;
 }
 
-const Events: FC<EventsProps> = props => {
+const Events: FC<EventsProps> = (props: EventsProps) => {
   const [events, setEvents] = useState<GCalApi.Events>();
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const Events: FC<EventsProps> = props => {
       <Container className={classes.cardGrid} maxWidth="lg">
         <Grid container direction="row" justify="center" spacing={3}>
           {events?.items?.map((ev, key) => (
-            <Event key={key} ev={ev} />
+            <Event key={key} ev={ev} setEvent={props.setEvent} />
           ))}
         </Grid>
       </Container>

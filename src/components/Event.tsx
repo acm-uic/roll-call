@@ -11,6 +11,7 @@ import RoomIcon from '@material-ui/icons/Room';
 
 interface EventProps {
   ev: GCalApi.Event;
+  setEvent: Function;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -37,7 +38,9 @@ const Event: FC<EventProps> = (props: EventProps) => {
 
     if (summary !== undefined) sessionStorage.setItem('EventName', summary);
 
-    window.location.href = '/UINPage';
+    props.setEvent(JSON.stringify({ id: id, name: summary }));
+
+    // window.location.href = '/UINPage';
   };
 
   const startDate = new Date(`${start?.date || start?.dateTime}`);
