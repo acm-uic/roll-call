@@ -23,24 +23,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const cards = [1];
-
-//FIXME: why is this getting called even though button isn't clicked
-
 const Event: FC<EventProps> = (props: EventProps) => {
   const { summary, location, start, end, id } = props.ev;
   const classes = useStyles();
 
   const handleClick = () => {
-    console.log(id);
-    // adding evenID in sessionStorage
-    if (id !== undefined) sessionStorage.setItem('chosenEvent', id);
-
-    if (summary !== undefined) sessionStorage.setItem('EventName', summary);
-
-    props.setEvent(JSON.stringify({ id: id, name: summary }));
-
-    // window.location.href = '/UINPage';
+    if (id !== undefined && summary !== undefined)
+      props.setEvent(JSON.stringify({ id: id, name: summary }));
   };
 
   const startDate = new Date(`${start?.date || start?.dateTime}`);
@@ -54,34 +43,32 @@ const Event: FC<EventProps> = (props: EventProps) => {
   });
   return (
     <>
-      {cards.map(card => (
-        <Grid item xs sm md lg key={card}>
-          <Card className={classes.card} raised>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {summary ? summary : 'Busy'}
-              </Typography>
-              <Typography>
-                {`${dateFormatter.format(startDate)} - ${dateFormatter.format(endDate)}`}
-              </Typography>
-              <Typography>
-                {location ? (
-                  <>
-                    <RoomIcon /> {location}
-                  </>
-                ) : (
-                  <></>
-                )}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="primary" onClick={handleClick}>
-                Start Event
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
+      <Grid item xs sm md lg key={id}>
+        <Card className={classes.card} raised>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {summary ? summary : 'Busy'}
+            </Typography>
+            <Typography>
+              {`${dateFormatter.format(startDate)} - ${dateFormatter.format(endDate)}`}
+            </Typography>
+            <Typography>
+              {location ? (
+                <>
+                  <RoomIcon /> {location}
+                </>
+              ) : (
+                <></>
+              )}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary" onClick={handleClick}>
+              Start Event
+            </Button>
+          </CardActions>
+        </Card>
+      </Grid>
     </>
   );
 };
